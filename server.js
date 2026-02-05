@@ -41,12 +41,19 @@ async function sendSMS(phone, otp) {
 app.post("/api/send-otp", async (req, res) => {
   const { phone } = req.body;
 
-  if (!phone) {
-    return res.status(400).json({ success: false, message: "Phone required" });
+  // ✅ Phone validation (India)
+  const phoneRegex = /^[6-9]\d{9}$/;
+
+  if (!phone || !phoneRegex.test(phone)) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid phone number"
+    });
   }
 
   const otp = generateOTP();
-  const expiresAt = new Date(Date.now() + 5 * 60 * 1000).toISOString(); // UTC
+  const expiresAt = new Date(Date.now() + 5 * 60 * 1000).toISOString();
+ // UTC
 
   try {
     // ✅ DELETE old unverified OTPs (do NOT mark them verified)
