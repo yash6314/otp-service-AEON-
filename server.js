@@ -26,8 +26,9 @@ async function sendSMS(phone, otp) {
       password: process.env.SMS_PASSWORD,
       from: process.env.SMS_SENDER_ID,
       to: phone,
-      msg: `Dear User, your One-Time Password (OTP) is ${otp}. Please do not share this OTP with anyone.
-- Mahindra University.`,
+      msg: `Dear user,
+Your OTP for AEON 2026 is${otp}. Please do not share this OTP with anyone.
+-AEON, Mahindra University.`,
       type: 1,
       template_id: process.env.SMS_TEMPLATE_ID
     }
@@ -52,7 +53,7 @@ app.post("/api/send-otp", async (req, res) => {
   }
 
   const otp = generateOTP();
-  const expiresAt = new Date(Date.now() + 5 * 60 * 1000).toISOString();
+  const expiresAt = new Date(Date.now() + 2 * 60 * 1000).toISOString();
  // UTC
 
   try {
