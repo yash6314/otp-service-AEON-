@@ -26,8 +26,8 @@ async function sendSMS(phone, otp) {
       password: process.env.SMS_PASSWORD,
       from: process.env.SMS_SENDER_ID,
       to: phone,
-      msg: `Dear user,
-Your OTP for AEON 2026 is${otp}. Please do not share this OTP with anyone.
+      msg: `Dear User,
+Your OTP for AEON 2026 is ${otp}. Please do not share this OTP with anyone.
 -AEON, Mahindra University.`,
       type: 1,
       template_id: process.env.SMS_TEMPLATE_ID
